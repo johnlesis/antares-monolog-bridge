@@ -26,7 +26,7 @@ final class MonologServiceProvider implements ServiceProvider
                 'stderr' => $logger->pushHandler(new StreamHandler('php://stderr', $level)),
                 'stdout' => $logger->pushHandler(new StreamHandler('php://stdout', $level)),
                 default  => $logger->pushHandler(new RotatingFileHandler(
-                    getcwd() . '/storage/logs/app.log',
+                    ($_ENV['APP_BASE_PATH'] ?? dirname(getcwd())) . '/storage/logs/app.log',
                     30,
                     $level
                 )),
